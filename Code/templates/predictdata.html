@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predict Data</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-4">Predict Data</h1>
+        <form action="{{ url_for('predictdata') }}" method="post">
+            <label for="input_date">Enter Date:</label>
+            <input type="date" id="input_date" name="input_date" required>
+            <button type="submit">Predict</button>
+        </form>
+        
+        {% if prediction %}
+        <div class="mt-4">
+            <h3>Predicted Results</h3>
+            <p><strong>Predicted Bank Failure:</strong> {{ prediction[0] }}</p>
+            <p><strong>Predicted Town Failure:</strong> {{ prediction[1] }}</p>
+            <p><strong>Predicted Perfect Technician :</strong> {{ prediction[2]|round(2) }}</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

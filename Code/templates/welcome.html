@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <a href="{{ url_for('welcome') }}">
+            <img src="{{ url_for('static', filename='TUNISYS_LOGO_001.png') }}" alt="Logo" class="logo">
+        </a>
+        <h1>Admin Dashboard</h1>
+    </header>
+    <main>
+        <div class="actions">
+            <h2>Register <a href="{{ url_for('register') }}" class="button">here</a></h2>
+            <h2>Log in <a href="{{ url_for('login') }}" class="button">here</a></h2>
+        </div>
+    </main>
+</body>
+</html>

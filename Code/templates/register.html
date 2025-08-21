@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <a href="{{ url_for('welcome') }}">
+            <img src="{{ url_for('static', filename='TUNISYS_LOGO_001.png') }}" alt="Logo" class="logo">
+        </a>
+        <h1>Register</h1>
+    </header>
+    <main>
+        <form action="{{ url_for('register') }}" method="POST">
+            <label for="code">Code:</label>
+            <input type="text" id="code" name="code" required>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit">Register</button>
+            {% if message %}
+                <p class="error">{{ message }}</p>
+            {% endif %}
+        </form>
+    </main>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <a href="{{ url_for('welcome') }}">
+            <img src="{{ url_for('static', filename='TUNISYS_LOGO_001.png') }}" alt="Logo" class="logo">
+        </a>
+        <p>Want to update the data? <a href="{{ url_for('updatedata') }}">Click here</a></p>
+        <p>Want to try our new smart maintenance prediction tool? <a href="{{ url_for('predictdata') }}">Click here</a></p>
+
+    </header>
+
+    <main>
+        <div class="dashboard-images">
+            <img src="{{ url_for('static', filename='output1.png') }}" alt="Image 1">
+            <img src="{{ url_for('static', filename='output2.png') }}" alt="Image 2">
+            <img src="{{ url_for('static', filename='output3.png') }}" alt="Image 3">
+            <img src="{{ url_for('static', filename='output4.png') }}" alt="Image 4">
+        </div>
+    </main>
+
+    <script>
+        // Set the auto-refresh interval (e.g., 30 seconds)
+        setTimeout(function(){
+            window.location.reload(1);
+        }, 30000); // 30000 milliseconds = 30 seconds
+    </script>
+</body>
+</html>
