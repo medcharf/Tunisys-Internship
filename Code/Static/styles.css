@@ -1,0 +1,184 @@
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('{{ url_for('static', filename='atm.jpg') }}');
+
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    
+}
+
+header {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.logo {
+    height: 50px;
+    margin-right: 1rem;
+}
+
+h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 4rem);
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 2rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+p {
+    font-size: 1.2rem;
+    margin: 1rem 0;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    margin: 0.5rem;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+/* styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: rgb(255, 255, 255)
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+.logo {
+    width: 100px;  /* Adjust this value as needed */
+    height: auto;  /* Maintain aspect ratio */
+}
+
+main {
+    padding: 20px;
+}
+
+.dashboard-data {
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-top: 20px;
+}
+/* styles.css */
+
+.dashboard-images {
+    display: flex;          /* Use flexbox to align images side by side */
+}
+
+.dashboard-images img {
+    width: 700px;           /* Adjust width as needed */
+    height: auto;           /* Maintain aspect ratio */
+    margin-right: 20px;     /* Add spacing between images */
+}
+
+.dashboard-data {
+    margin-top: 20px;       /* Optional: Add margin between images and data */
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Logo styling */
+.logo {
+    width: 200px;
+    height: auto;
+    margin-bottom: 1rem;
+}
+                  
+
+
+
+
+
+
+
+
+
+
+
+
+
+header .logo {
+    width: 150px;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 1.2em;
+    margin: 10px 0;
+}
+
+header a {
+    color: #ff0000;
+    text-decoration: underline;
+}
+
+header a:hover {
+    color: #ffdf00;
+}
+
+main {
+    text-align: center;
+    padding: 20px;
+}
+
+.dashboard-images img {
+    width: 45%;
+    margin: 20px 2.5%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    transition: transform 0.3s;
+}
+
+.dashboard-images img:hover {
+    transform: scale(1.05);
+}
