@@ -14,20 +14,16 @@ from sklearn.preprocessing import LabelEncoder
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
 
-# Simulated user database (replace with your actual user authentication logic)
 users = {'user': 'password'}
 user_codes = {}  # Dictionary to store user-generated codes
 
-# Path to your CSV file
 csv_file_path = r"C:\Users\moham\Downloads\dataset.csv"
 
-# Check if the CSV file exists, create it if it doesn't
 if not os.path.exists(csv_file_path):
     with open(csv_file_path, 'w', newline='') as file:
         writer = csv.writer(file)
         writer.writerow(['Customers', 'Quantity', 'Date', 'Total Payment in TND'])
 
-# Predefined list of banks
 banks = [
     "Arab Tunisian Bank (ATB)",
     "Banque Nationale Agricole (BNA)",
@@ -41,52 +37,42 @@ banks = [
     "Banque Tuniso-Libyenne (BTL)"
 ]
 
-# Load the dataset for predictive models
 data = pd.read_csv(r"C:\Users\moham\Downloads\maintenance_events_1000.csv")
 
-# Convert 'date' column to datetime
 data['date'] = pd.to_datetime(data['date'])
 
-# Extract relevant date features
 data['day_of_week'] = data['date'].dt.dayofweek
 data['month'] = data['date'].dt.month
 data['year'] = data['date'].dt.year
 
-# Encoding categorical variables
 le_bank = LabelEncoder()
 data['bank_code'] = le_bank.fit_transform(data['bank'])
 
 le_town = LabelEncoder()
 data['town_code'] = le_town.fit_transform(data['town'])
 
-# Prepare data for bank and town prediction
 X_bank_town = data[['day_of_week', 'month', 'year']]
 y_bank = data['bank_code']
 y_town = data['town_code']
 
-# Prepare data for technician prediction
 X_technicians = data[['day_of_week', 'month', 'year', 'bank_code', 'town_code']]
 y_technicians = data['num_technicians']
 
-# Splitting data into training and testing sets
 X_train_bank_town, X_test_bank_town, y_bank_train, y_bank_test, y_town_train, y_town_test = train_test_split(
     X_bank_town, y_bank, y_town, test_size=0.2, random_state=42)
 
 X_train_technicians, X_test_technicians, y_tech_train, y_tech_test = train_test_split(
     X_technicians, y_technicians, test_size=0.2, random_state=42)
 
-# Training RandomForestClassifier models for bank and town prediction
 model_bank = RandomForestClassifier(n_estimators=100, max_depth=5, random_state=42)
 model_bank.fit(X_train_bank_town, y_bank_train)
 
 model_town = RandomForestClassifier(n_estimators=100, max_depth=5, random_state=42)
 model_town.fit(X_train_bank_town, y_town_train)
 
-# Training RandomForestRegressor model for technician prediction
 model_technicians = RandomForestRegressor(n_estimators=100, max_depth=5, random_state=42)
 model_technicians.fit(X_train_technicians, y_tech_train)
 
-# Function to predict failures for a given input date
 def predict_failure(date_input):
     # Convert input date to datetime
     date_input = datetime.strptime(date_input, '%Y-%m-%d')
@@ -100,11 +86,9 @@ def predict_failure(date_input):
     bank_code_pred = model_bank.predict([[day_of_week, month, year]])[0]
     town_code_pred = model_town.predict([[day_of_week, month, year]])[0]
     
-    # Decode predicted bank and town
     predicted_bank = le_bank.inverse_transform([bank_code_pred])[0]
     predicted_town = le_town.inverse_transform([town_code_pred])[0]
     
-    # Predict optimal number of technicians
     num_technicians_pred = model_technicians.predict([[day_of_week, month, year, bank_code_pred, town_code_pred]])[0]
     
     return predicted_bank, predicted_town, (math.ceil(num_technicians_pred)-2)
@@ -242,3 +226,4 @@ def updatedata():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
